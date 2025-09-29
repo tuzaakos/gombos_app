@@ -1,15 +1,20 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import Kartya from "./components/Kartya.jsx";
+
 
 function App() {
   const szam = 2;
   const [uzenet, setUzenet] = useState("");
+  const [db, setDb] = useState(0);
 
   function Tippel(tipp){
     if (tipp === szam) {
-      setUzenet("Jól tippeltél!")
+      setUzenet("Helyes!")
   }
   else {
-    setUzenet("Rossz tipp!")
+    setUzenet("Helytelen!")
+    setDb(db + 1);
   }
   }
   return (
@@ -21,7 +26,10 @@ function App() {
       <button onClick={() => Tippel(4)}>4</button>
       <button onClick={() => Tippel(5)}>5</button>
       
-      <h3>{uzenet}</h3>
+      <h3>A tipped: {uzenet}</h3>
+      <p>Tippek száma: {db}</p>
+
+      <Kartya />
     </>
   )
 }
